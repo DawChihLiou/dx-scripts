@@ -1,11 +1,36 @@
 #!/usr/bin/env node
-'use strict'
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod }
+
+'use strict';
+
+process.on('unhandledRejection', (err) => {
+  throw err;
+});
+
+const spawn = require('cross-spawn');
+
+const args = process.argv.slice(2);
+const scriptIndex = args.findIndex((arg) => arg === 'lighthouse');
+const script = scriptIndex > 0 ? args[scriptIndex] : args[0];
+const spawnArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : [];
+
+if (['lighthouse'].includes(script)) {
+  const result = spawn.sync(
+    process.execPath,
+    spawnArgs
+      .concat(require.resolve(`./scripts/${script}`))
+      .concat(args.slice(scriptIndex + 1)),
+    { stdio: 'inherit' },
+  );
+
+  if (result.signal) {
+    if (result.signal === 'SIGKILL') {
+      console.log('The script failed becuse the process exited too early.');
+    } else if (result.signal === 'SIGTERM') {
+      console.log('The script failed because the process is killed.');
+    }
   }
-Object.defineProperty(exports, '__esModule', { value: true })
-var chalk_1 = __importDefault(require('chalk'))
-console.log(chalk_1.default.yellow('Hello world!'))
-//# sourceMappingURL=index.js.map
+
+  process.exit(result.status);
+} else {
+  console.log(`Unknown script "${script}".`);
+}

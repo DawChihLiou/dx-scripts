@@ -1,11 +1,8 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-}
+  extends: ['plugin:prettier/recommended'],
+};
