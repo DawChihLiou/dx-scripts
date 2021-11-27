@@ -17,7 +17,7 @@ if (['lighthouse'].includes(script)) {
   const result = spawn.sync(
     process.execPath,
     spawnArgs
-      .concat(require.resolve(`./scripts/${script}`))
+      .concat(require.resolve(`../scripts/${script}`))
       .concat(args.slice(scriptIndex + 1)),
     { stdio: 'inherit' },
   );
