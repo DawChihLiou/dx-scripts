@@ -1,6 +1,6 @@
 # dx-scripts
 
-A personal collection of commonly used scripts.
+A collection of commonly used scripts for developer experience and productivity.
 
 ### Installation
 
