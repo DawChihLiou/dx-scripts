@@ -1,12 +1,15 @@
 {
   "name": "dx-scripts",
-  "version": "1.0.0",
-  "description": "A collection of usefule scripts for developer experience and productivity.",
+  "version": "0.0.0",
+  "description": "A collection of commonly used scripts for developer experience and productivity.",
   "repository": "git@github.com:DawChihLiou/dx-scripts.git",
   "author": "DawChihLiou",
   "license": "MIT",
   "private": false,
-  "main": "./bin/index.js",
+  "files": [
+    "bin",
+    "scripts"
+  ],
   "bin": {
     "dx-scripts": "./bin/index.js"
   },
