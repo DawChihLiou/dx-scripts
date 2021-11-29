@@ -14,11 +14,13 @@ const {
 (async () => {
   const urls = process.argv.slice(2);
 
+  // collect the median of the analyses for each url
   const medians = urls.map((url) => {
-    console.log(`🗼 Running Lighthouse for ${url}`);
+    console.log(`🗼 Running Lighthouse for ${url} ...`);
 
     const results = [];
 
+    // run lighthouse 5 times and comput the median
     for (let i = 0; i < 5; i++) {
       const { status, stdout } = spawn.sync('node', [
         lighthouse,
@@ -38,14 +40,16 @@ const {
     return computeMedianRun(results);
   });
 
-  medians.forEach((median) => {
-    console.log('\n ✅ Report is ready for', median.finalUrl);
-    console.log(
-      '🗼 Median performance score: ',
-      draw(
+  // collect the report for the computed median for each url
+  const reports = medians.map((median) => {
+    const report = [];
+
+    report.push(`✅ Report is ready for ${median.finalUrl}`);
+    report.push(
+      `🗼 Median performance score: ${draw(
         median.categories.performance.score,
         median.categories.performance.score * 100,
-      ),
+      )}`,
     );
 
     [
@@ -57,9 +61,14 @@ const {
       'cumulative-layout-shift',
     ].map((matrix) => {
       const { title, displayValue, score } = median.audits[matrix];
-      console.log(`🗼 Median ${title}: ${draw(score, displayValue)}`);
+      report.push(`🗼 Median ${title}: ${draw(score, displayValue)}`);
     });
+
+    return report.join('\n');
   });
+
+  // log the final output
+  console.log(reports.join('\n\n'));
 })();
 
 /**
@@ -76,10 +85,10 @@ const {
  */
 function draw(score, value) {
   if (score >= 0.9 && score <= 1) {
-    return chalk.green(value);
+    return chalk.green(`${value} (Good)`);
   }
   if (score >= 0.5 && score < 0.9) {
-    return chalk.yellow(value);
+    return chalk.yellow(`${value} (Needs Improvement)`);
   }
-  return chalk.red(value);
+  return chalk.red(`${value} (Poor)`);
 }

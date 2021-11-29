@@ -1,6 +1,6 @@
 {
   "name": "dx-scripts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A collection of commonly used scripts for developer experience and productivity.",
   "repository": "git@github.com:DawChihLiou/dx-scripts.git",
   "author": "DawChihLiou",
