@@ -7,6 +7,7 @@ process.on('unhandledRejection', (err) => {
 });
 
 const spawn = require('cross-spawn');
+const chalk = require('chalk')
 
 const args = process.argv.slice(2);
 const scriptIndex = args.findIndex((arg) => arg === 'lighthouse');
@@ -14,6 +15,14 @@ const script = scriptIndex > 0 ? args[scriptIndex] : args[0];
 const spawnArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : [];
 
 if (['lighthouse'].includes(script)) {
+  console.log(`
+*************************************
+*                                   *
+*  🎉🎉 Welcome to ${chalk.bgMagenta.bold('dx-scripts')} 🎉🎉  *
+*                                   *
+*************************************
+  `)
+
   const result = spawn.sync(
     process.execPath,
     spawnArgs
