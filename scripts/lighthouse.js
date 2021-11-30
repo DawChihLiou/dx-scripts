@@ -46,7 +46,7 @@ async function run() {
     .option(
       '-i, --iteration <type>',
       'How many times Lighthouse should run the analysis per URL',
-      5,
+      '5',
     )
     .parse();
 
@@ -86,7 +86,7 @@ async function run() {
   const reports = medians.map((median) => {
     const report = [];
 
-    report.push(`\n✅ Report is ready for ${median.finalUrl}`);
+    report.push(`\n${chalk.green('✔')} Report is ready for ${median.finalUrl}`);
     report.push(
       `🗼 Median performance score: ${draw(
         median.categories.performance.score,
