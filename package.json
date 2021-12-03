@@ -10,16 +10,28 @@
     "bin",
     "scripts"
   ],
+  "keywords": [
+    "cli",
+    "node",
+    "typescript",
+    "npm",
+    "yarn",
+    "dx",
+    "developer experience",
+    "scripts",
+    "productivity"
+  ],
   "bin": {
     "dx-scripts": "./bin/index.js"
   },
   "scripts": {
     "dev": "nodemon",
-    "build": "run-s clean tsc",
+    "build": "run-s clean tsc chmod",
     "start": "node bin/index.js",
     "clean": "rimraf ./bin",
+    "chmod": "chmod u+x ./bin/index.js",
     "tsc": "tsc",
-    "lint": "eslint '**/*.{js,ts,jsx,tsx}' --fix",
+    "lint": "eslint '**/*.{js,ts}' --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
@@ -34,8 +46,7 @@
     "chrome-launcher": "^0.15.0",
     "commander": "^8.3.0",
     "cross-spawn": "^7.0.3",
-    "lighthouse": "^9.1.0",
-    "ora": "^6.0.1"
+    "lighthouse": "^9.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

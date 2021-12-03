@@ -4,10 +4,14 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-const chalk = require('chalk');
-const spawn = require('cross-spawn');
-const { program } = require('commander');
+import chalk from 'chalk';
+import spawn from 'cross-spawn';
+import { Command } from 'commander';
+
+// path to lighthouse cli
 const lighthouse = require.resolve('lighthouse/lighthouse-cli');
+
+// use the lighthouse core library for calculate median performance
 const {
   computeMedianRun,
 } = require('lighthouse/lighthouse-core/lib/median-run.js');
@@ -24,7 +28,7 @@ const {
  * @param {number} score
  * @param {string} value
  */
-function draw(score, value) {
+function draw(score: number, value: number) {
   if (score >= 0.9 && score <= 1) {
     return chalk.green(`${value} (Good)`);
   }
@@ -41,6 +45,8 @@ function draw(score, value) {
  * don't interfere with each other.
  */
 async function run() {
+  const program = new Command();
+
   program
     .argument('<urls...>', 'Lighthouse will run the analysis on the URLs.')
     .option(
@@ -76,7 +82,7 @@ async function run() {
         console.log('🗼 Lighthouse failed, skipping...');
         continue;
       }
-      results.push(JSON.parse(stdout));
+      results.push(JSON.parse(stdout.toString()));
     }
 
     return computeMedianRun(results);

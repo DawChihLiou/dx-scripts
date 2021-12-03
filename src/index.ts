@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
-'use strict';
+import spawn from 'cross-spawn';
+import chalk from 'chalk';
 
 process.on('unhandledRejection', (err) => {
   throw err;
 });
-
-const spawn = require('cross-spawn');
-const chalk = require('chalk')
 
 const args = process.argv.slice(2);
 const scriptIndex = args.findIndex((arg) => arg === 'lighthouse');
@@ -21,12 +19,12 @@ if (['lighthouse'].includes(script)) {
 *  🎉🎉 Welcome to ${chalk.bgMagenta.bold('dx-scripts')} 🎉🎉  *
 *                                   *
 *************************************
-  `)
+  `);
 
   const result = spawn.sync(
     process.execPath,
     spawnArgs
-      .concat(require.resolve(`../scripts/${script}`))
+      .concat(require.resolve(`./scripts/${script}`))
       .concat(args.slice(scriptIndex + 1)),
     { stdio: 'inherit' },
   );
@@ -39,7 +37,7 @@ if (['lighthouse'].includes(script)) {
     }
   }
 
-  process.exit(result.status);
+  process.exit(result.status ?? undefined);
 } else {
   console.log(`Unknown script "${script}".`);
 }
