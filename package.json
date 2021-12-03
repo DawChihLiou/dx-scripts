@@ -1,6 +1,6 @@
 {
   "name": "dx-scripts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A collection of commonly used scripts for developer experience and productivity.",
   "repository": "git@github.com:DawChihLiou/dx-scripts.git",
   "author": "DawChihLiou",
@@ -64,11 +64,9 @@
     "eslint-plugin-react": "^7.27.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.0.2",
-    "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
   },
