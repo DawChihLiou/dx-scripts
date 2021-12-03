@@ -1,6 +1,6 @@
 # dx-scripts
 
-A collection of commonly used scripts for developer experience and productivity.
+A collection of utility scripts for developer experience and productivity.
 
 [![npm version](https://img.shields.io/npm/v/dx-scripts.svg?style=flat)](https://www.npmjs.org/package/dx-scripts)
 ![npm downloads](https://img.shields.io/npm/dm/dx-scripts)
