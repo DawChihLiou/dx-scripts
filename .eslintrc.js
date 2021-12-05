@@ -1,3 +1,10 @@
+/**
+ * See more about @typescript-eslint plugin: 
+ * - https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin#usage
+ *
+ * See more about prettier configuration: 
+ * - https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
+ */
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
