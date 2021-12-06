@@ -1,7 +1,7 @@
 {
   "name": "dx-scripts",
   "version": "0.0.3",
-  "description": "A collection of commonly used scripts for developer experience and productivity.",
+  "description": "A collection of utility scripts for developer experience and productivity.",
   "repository": "git@github.com:DawChihLiou/dx-scripts.git",
   "author": "DawChihLiou",
   "license": "MIT",
@@ -24,7 +24,6 @@
     "dx-scripts": "./bin/index.js"
   },
   "scripts": {
-    "dev": "nodemon",
     "build": "run-s clean tsc chmod",
     "start": "node bin/index.js",
     "clean": "rimraf ./bin",
@@ -35,22 +34,18 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+    "*.{js,ts}": [
+      "yarn lint",
+      "yarn prettier"
     ]
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "chrome-launcher": "^0.15.0",
     "commander": "^8.3.0",
     "cross-spawn": "^7.0.3",
     "lighthouse": "^9.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/eslint-parser": "^7.16.3",
-    "@babel/preset-env": "^7.16.4",
     "@types/cross-spawn": "^6.0.2",
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
