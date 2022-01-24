@@ -105,3 +105,6 @@ dist
 
 # CLI bin
 bin/
+
+# test
+.test

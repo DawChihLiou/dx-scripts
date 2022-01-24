@@ -40,9 +40,11 @@
     ]
   },
   "dependencies": {
+    "@squoosh/cli": "^0.7.2",
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
     "cross-spawn": "^7.0.3",
+    "globby": "^13.0.0",
     "lighthouse": "^9.1.0"
   },
   "devDependencies": {

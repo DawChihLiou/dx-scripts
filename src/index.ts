@@ -8,11 +8,11 @@ process.on('unhandledRejection', (err) => {
 });
 
 const args = process.argv.slice(2);
-const scriptIndex = args.findIndex((arg) => arg === 'lighthouse');
+const scriptIndex = args.findIndex((arg) => arg === 'lighthouse' || 'image');
 const script = scriptIndex > 0 ? args[scriptIndex] : args[0];
 const spawnArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : [];
 
-if (['lighthouse'].includes(script)) {
+if (['lighthouse', 'image'].includes(script)) {
   console.log(`
 *************************************
 *                                   *
