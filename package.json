@@ -31,7 +31,9 @@
     "tsc": "tsc",
     "lint": "eslint '**/*.{js,ts}' --fix",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "depgraph": "depcruise src --include-only \"^src\" --output-type text",
+    "depgraph:visual": "depcruise --include-only \"^src\" --output-type dot src | dot -T svg > .generated/dependencygraph.svg"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -52,6 +54,7 @@
     "@typescript-eslint/parser": "^5.4.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
+    "dependency-cruiser": "^11.0.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
