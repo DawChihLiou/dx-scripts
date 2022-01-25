@@ -1,6 +1,6 @@
 {
   "name": "dx-scripts",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A collection of utility scripts for developer experience and productivity.",
   "repository": "git@github.com:DawChihLiou/dx-scripts.git",
   "author": "DawChihLiou",
@@ -43,11 +43,13 @@
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
     "cross-spawn": "^7.0.3",
-    "lighthouse": "^9.1.0"
+    "lighthouse": "^9.1.0",
+    "sharp": "^0.29.3"
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.2",
     "@types/node": "^16.11.7",
+    "@types/sharp": "^0.29.5",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "commitizen": "^4.2.4",
