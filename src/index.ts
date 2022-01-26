@@ -31,7 +31,7 @@ if (['lighthouse', 'image'].includes(script)) {
 
   if (result.signal) {
     if (result.signal === 'SIGKILL') {
-      console.log('The script failed becuse the process exited too early.');
+      console.log('The script failed because the process exited too early.');
     } else if (result.signal === 'SIGTERM') {
       console.log('The script failed because the process is killed.');
     }

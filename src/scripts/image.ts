@@ -73,28 +73,33 @@ async function generateImages(
         /\.(png|gif|avif|jpg|jpeg|webp)$/,
         '',
       );
-      const stream = sharp(path);
 
-      if (options.webp) {
-        await stream.webp().toFile(`${outputDir}/${filename}.webp`);
-      }
+      const workers = Object.keys(options)
+        .filter((key) => typeof options[key] === 'boolean' && options[key])
+        .map((ext) => async () => {
+          if (ext === 'gif') {
+            // animated WebP has advantages over GIF
+            // https://developers.google.com/speed/webp/faq#why_should_i_use_animated_webp
+            await sharp(path, { animated: true })
+              .webp({ reductionEffort: 6 })
+              .toFile(`${outputDir}/${filename}.webp`);
+          } else {
+            await sharp(path).webp().toFile(`${outputDir}/${filename}.${ext}`);
+          }
+        });
 
-      if (options.avif) {
-        await stream.avif().toFile(`${outputDir}/${filename}.avif`);
-      }
+      const results = await Promise.allSettled(
+        workers.map((worker) => worker()),
+      );
 
-      if (options.jpg) {
-        await stream.jpeg().toFile(`${outputDir}/${filename}.jpg`);
-      }
+      const rejected = results.filter((result) => result.status === 'rejected');
 
-      if (options.png) {
-        await stream.png().toFile(`${outputDir}/${filename}.png`);
-      }
-
-      if (options.gif) {
-        await sharp(path, { animated: true })
-          .webp({ reductionEffort: 6 })
-          .toFile(`${outputDir}/${filename}.webp`);
+      if (rejected.length !== 0) {
+        console.log(
+          `🌄 ${chalk.red(
+            '⨯',
+          )} Failed to generate optimized image for "${path}". Skipping...`,
+        );
       }
     }
   }
